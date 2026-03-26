@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1a0a0a,100:dc2626&height=220&section=header&text=YT-SENTIMENT&fontSize=64&fontColor=ffffff&fontAlignY=38&fontAlign=50&desc=Advanced%20YouTube%20Comment%20%26%20Engagement%20Analysis&descSize=16&descAlignY=58&descAlign=50&descColor=fca5a580&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1a0a0a,100:dc2626&height=220&section=header&text=YT-SENTIMENT&fontSize=64&fontColor=ffffff&fontAlignY=38&fontAlign=50&desc=Advanced%20YouTube%20Comment%20and%20Engagement%20Analysis&descSize=16&descAlignY=58&descAlign=50&descColor=fca5a580&animation=fadeIn&v=2" width="100%"/>
 
 </div>
 
@@ -131,7 +131,7 @@ Standard NLP libraries often fail at internet dialect. By combining a baseline l
 
 ```bash
 # 1. Clone the repository and setup environment
-git clone [https://github.com/your-username/yt_sentiment_analyser.git](https://github.com/your-username/yt_sentiment_analyser.git)
+git clone https://github.com/NullSecurity07/YT-Sentiment
 cd yt_sentiment_analyser
 python3 -m venv venv
 source venv/bin/activate
