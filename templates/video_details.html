@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <!-- Video Information -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title mb-4">
+                    <i class="fas fa-video me-2"></i>
+                    {{ video.title }}
+                </h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Channel:</strong> {{ video.channel_title }}</p>
+                        <p><strong>Published:</strong> {{ video.published_at }}</p>
+                        <p><strong>Duration:</strong> {{ video.duration }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Views:</strong> {{ "{:,}".format(video.view_count) }}</p>
+                        <p><strong>Likes:</strong> {{ "{:,}".format(video.like_count) }}</p>
+                        <p><strong>Comments:</strong> {{ "{:,}".format(video.comment_count) }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Results -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title mb-4">
+                    <i class="fas fa-chart-bar me-2"></i>
+                    Analysis Results
+                </h3>
+                {% for section in analysis %}
+                <div class="mb-4">
+                    <h4>{{ section.section.replace('_', ' ').title() }}</h4>
+                    <ul class="list-group">
+                        {% for point in section.points|from_json %}
+                        <li class="list-group-item">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            {{ point }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Comments Analysis -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title mb-4">
+                    <i class="fas fa-comments me-2"></i>
+                    Comments Analysis
+                </h3>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Author</th>
+                                <th>Comment</th>
+                                <th>Likes</th>
+                                <th>Replies</th>
+                                <th>Sentiment</th>
+                                <th>Published</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for comment in comments %}
+                            <tr>
+                                <td>{{ comment.author }}</td>
+                                <td>{{ comment.text }}</td>
+                                <td>{{ "{:,}".format(comment.likes) }}</td>
+                                <td>{{ "{:,}".format(comment.reply_count) }}</td>
+                                <td>
+                                    {% if comment.sentiment_score > 0.1 %}
+                                        <span class="badge bg-success">Positive</span>
+                                    {% elif comment.sentiment_score < -0.1 %}
+                                        <span class="badge bg-danger">Negative</span>
+                                    {% else %}
+                                        <span class="badge bg-warning">Neutral</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ comment.published_at }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Add any additional JavaScript for the video details page here
+</script>
+{% endblock %} 
